@@ -37,6 +37,12 @@
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
-    	@yield('content')
+    	@include('includes.navbar')
+    	<div class="container">
+    		@yield('content')
+    	</div>
+
+    	<!-- Scripts -->
+    	<script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
