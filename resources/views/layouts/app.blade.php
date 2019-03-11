@@ -32,8 +32,11 @@
         }
         </script>
 
+        <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+		<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
-
+    	@yield('content')
     </body>
 </html>

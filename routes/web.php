@@ -11,6 +11,20 @@
 |
 */
 
+/* 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+*/
+
+Route::get('/', 'PageController@index');
+Route::get('/about', 'PageController@about');
+
+Route::get('/user/{id}/{name}', function ($id,$name) {
+    return 'this is user '.$id.' name '.$name;
 });
