@@ -1,48 +1,3 @@
-<style type="text/css">
-	/*.footer {
-	  position: absolute;
-	  width: 100%;
-	  height: 60px;
-	}*/
-	footer{
-		background-color: #215a96;
-		color: #ffffff;
-	}
-	footer a {
-		color: #ffffff;
-		text-decoration: none;
-	}
-	a {
-		text-decoration: none;
-	}
-
-	a:hover {
-		color: #f05d5e;
-		text-decoration: none;
-	}
-	footer i {
-		font-size: 3rem;
-	}
-	.footer-copyright.text-center{
-		background: #999;
-		padding: 0 !important;
-		margin-top: 1rem;
-	}
-	footer h5 {
-		margin-bottom: 0 !important;
-	}
-
-	@media (max-width: 767px) {
-		.footer-logo {
-			max-width: 50%;
-		}
-
-		h5.font-weight-bold.text-uppercase.mt-3.mb-4 {
-			margin-bottom: 0 !important;
-		}
-	}
-</style>
-
 <!-- Footer -->
 <footer class="page-footer font-small">
 
@@ -84,7 +39,7 @@
 
           <ul class="list-unstyled">
             <li>
-              <a href="#">Find an Agent</a>
+              <a href="/agents">Find an Agent</a>
             </li>
             <li>
               <a href="/careers">Careers</a>
@@ -93,7 +48,7 @@
               <a href="/privacy-policy">Privacy Policy</a>
             </li>
             <li>
-              <a href="#">Employee Login</a>
+              <a href="https://annearundelproperties.net/">Employee Login</a>
             </li>
           </ul>
 
@@ -109,8 +64,8 @@
           <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Social</h5>
 
           <a href="https://www.facebook.com/TaylorPropertiesCareers/" target="_blank"><i class="fab fa-facebook-square"></i></a>
-          <a href="https://www.linkedin.com/company/taylor-properties/" target="_blank"><i class="fab fa-youtube-square"></i></a>
-          <a href="https://www.youtube.com/channel/UC9Xl-dmt3Px3KJxkX2kAySQ/featured" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.youtube.com/channel/UC9Xl-dmt3Px3KJxkX2kAySQ/featured" target="_blank"><i class="fab fa-youtube-square"></i></a>
+          <a href="https://www.linkedin.com/company/taylor-properties/" target="_blank"><i class="fab fa-linkedin"></i></a>
 
 
         </div>

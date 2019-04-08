@@ -24,7 +24,26 @@ Route::get('/about', function () {
 
 Route::get('/', 'PageController@index');
 Route::get('/about', 'PageController@about');
+Route::get('/about/team', 'PageController@team');
+Route::get('/about/partners', 'PageController@partners');
+Route::get('/about/offices', 'PageController@offices');
+Route::get('/agents', 'PageController@allAgents');
+Route::get('/agents/search', 'PageController@agentSearch');
+Route::get('/agents/{id}', 'PageController@showAgent');
+Route::post('/agents/{id}/email', 'PageController@emailAgent');
 
-Route::get('/user/{id}/{name}', function ($id,$name) {
-    return 'this is user '.$id.' name '.$name;
+Route::get('/careers', function () {
+    return view('careers');
 });
+Route::get('/100-percent-commission-calculator', function () {
+    return view('commission_calculator');
+});
+Route::get('/buying-a-home', function () {
+    return view('buy');
+});
+Route::post('/buying-a-home', 'ContactController@store')->name('contact.store');
+Route::get('/sell-my-house', function () {
+    return view('sell');
+});
+Route::post('/sell-my-house', 'ContactController@store')->name('contact.store');
+

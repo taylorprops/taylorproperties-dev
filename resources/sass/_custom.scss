@@ -1,7 +1,100 @@
-.dropdown-toggle:after {
-	display: none;
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif !important;
 }
 
-.jumbotron {
-	background: ('/images/taylorprops-hero.jpeg');
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: "Merriweather", serif !important;
+	color: #215a96;
+	line-height: 1.6;
+}
+
+a {
+	color: $tp-blue;
+}
+
+.btn-primary:hover {
+	background-color: $orange;
+	border-color: $orange;
+}
+
+.profile-body {
+	p, span, div, dl, dt, dl {
+		font-family: "Montserrat", sans-serif !important;
+		color: #212529 !important;
+		font-size: 0.9rem !important;
+		font-size: 0.9rem !important;
+		font-style: normal !important;
+		background: none !important;
+		font-weight: normal !important;
+	}
+}
+
+
+.page-link {
+	color: $tp-blue;
+}
+
+.page-item.active .page-link {
+	background-color: $tp-blue;
+    border-color: $tp-blue;
+}
+
+.btn-primary{
+	background-color: $tp-blue;
+	border-color: $tp-blue;
+}
+
+.btn-secondary{
+	background-color: $orange;
+	border-color: $orange;
+}
+
+.btn-secondary:hover{
+	background-color: $orange;
+	border-color: $orange;
+}
+
+.row.search {
+	margin: 2em 0;
+}
+
+
+footer {
+	background-color: #215a96;
+	color: #ffffff;
+	text-decoration: none;
+
+	a {
+		text-decoration: none;
+		color: #fff;
+	}
+	a:hover {
+		color: #f05d5e;
+		text-decoration: none;
+	}
+	i {
+		font-size: 3rem;
+	}
+	h5 {
+		margin-bottom: 0 !important;
+		color: #fff;
+	}
+}
+
+.footer-copyright.text-center{
+	background: #999;
+	padding: 0 !important;
+	margin-top: 1rem;
+}
+
+
+@media (max-width: 767px) {
+	.footer-logo {
+		max-width: 50%;
+	}
+
+	footer h5.font-weight-bold.text-uppercase.mt-3.mb-4 {
+		margin-bottom: 0 !important;
+	}
 }

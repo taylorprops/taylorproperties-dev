@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Agent;
+use App\TPLocation;
+
+use Mail;
+use App\Mail\ContactEmail;
+use Laracasts\Flash\Flash;
 
 class PageController extends Controller
 {
@@ -21,6 +27,74 @@ class PageController extends Controller
     {
         //
         return view('about.about');
+    }
+
+    public function team()
+    {
+        //
+        return view('about.team');
+    }
+    public function partners()
+    {
+        //
+        return view('about.partners');
+    }
+    public function offices()
+    {
+        $locations = TPLocation::orderBy('created_at','desc')->get();
+        return view('about.offices')->with('locations',$locations);
+    }
+
+    public function allAgents()
+    {
+        $agents = Agent::where('company','Taylor Properties')
+        ->orderBy('designations','desc')
+        ->paginate(30);
+
+        return view('agents')->with('agents',$agents);
+    }
+
+    public function agentSearch(Request $request)
+    {
+        $query = $request->input('q');
+        $agents = Agent::where('fullname','LIKE','%'.$query.'%')->orWhere('cell','LIKE','%'.$query.'%')->paginate(12);
+        // append search query parameter to search results
+        $pagination = $agents->appends(array('q' => $query));
+        if(count($agents) > 0)
+        {
+            return view('agent_search')->with(['agents'=>$agents,'query'=>$query]);
+        }
+        else 
+        {
+            return view ('agents')->withMessage('No Details found. Try to search again !');
+        }
+    }
+
+    public function showAgent($id)
+    {
+        $agent = Agent::find($id);
+        return view('agent_profile')->with('agent',$agent);
+    }
+
+    public function emailAgent(Request $request,$id)
+    {
+        $agent = Agent::find($id);
+        $agent_email = $agent->email;
+
+        $contact = [];
+
+        $contact['name'] = $request->get('name');
+        $contact['email'] = $request->get('email');
+        $contact['phone'] = $request->get('phone');
+        $contact['body'] = $request->get('body');
+
+        // Mail delivery logic goes here
+        Mail::to('gary@taylorprops.com')->send(new ContactEmail($contact));
+
+        flash('Thank you! Your message has been sent!')->success();
+
+        return redirect()->back();
+        //return view('agents');
     }
 
     /**
