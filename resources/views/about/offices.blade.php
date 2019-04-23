@@ -33,8 +33,7 @@
 	<div class="row">
 		<div class="header-text">
 			<h1>Office Locations</h1>
-			<p>Heritage Title has convenient locations to serve you throughout the Baltimore-Washington metropolitan areas. Our offices work together to offer you a wide range of options for settlement, and the highest level of professionalism and knowledge. Heritage Title will conduct your real estate settlement at a time and location that is convenient to all parties involved.</p>
-			<p><strong>We will also come to YOU!</strong> We will travel to your home, office or anywhere of your choosing to give you the best possible experience.</p>
+			<p>Convenient locations to serve you throughout the Baltimore-Washington metropolitan areas. Our offices give you the flexibility to work where you want or need. Fully equipped with work stations, free printing, scanning and faxing. Conference rooms to hold meetings, trainings and settlements.</p>
 		</div>
 	</div>
 </div>

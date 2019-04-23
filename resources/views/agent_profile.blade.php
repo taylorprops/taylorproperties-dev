@@ -1,8 +1,50 @@
 @extends('layouts.app')
 
-@section('title', 'Find an Agent | Taylor Properties | Buying and Selling Real Estate in DC, MD, VA and PA')
+@section('title', $agent->fullname.' | Taylor Properties | Buying and Selling Real Estate in DC, MD, VA and PA')
 
 @section('content')
+<style type="text/css">
+
+    .imagebox {
+      background: black;
+      padding: 0px;
+      position: relative;
+      width: 100%;
+    }
+
+    .imagebox img {
+      opacity: 1;
+      transition: 0.5s opacity;
+      width: 100%;
+    }
+
+    .imagebox .imagebox-desc {
+      background-color: rgba(33, 90, 150, 0.1);
+      bottom: 0px;
+      color: #fff;
+      font-size: 1.2em;
+      left: 0px;
+      padding: 4px 10px;
+      position: absolute;
+      transition: 0.5s padding;
+      width: 100%;
+      font-weight: bold;
+      text-shadow: 0 0 3px rgba(0,0,0,.9);
+    }
+
+    .imagebox:hover img {
+      opacity: 0.7;
+    }
+
+    .imagebox:hover .imagebox-desc {
+      padding: 4% 2%;
+    }
+    .category-banner {
+      height: 300px; 
+      object-fit: cover;
+    }
+
+</style>
 
 <main role="main">
   <div class="container">
@@ -16,23 +58,27 @@
           <img class="profile-img-top" src="{{ $agent->photo_url }}" alt="{{$agent->fullname}}" width="100%">
           @endif
         </div>
+        <div class="contact-info">
+            <h3>Contact</h3>
+            @if ($agent->website == '' || $agent->website == null)
+            @else
+            <p><a href="{{$agent->website}}" target="_blank">{{$agent->website}}</a></p>
+            @endif
+            <p class="profile-text phone">{{$agent->cell}}</p>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailModal" style="margin-bottom: 1rem;">Email</button>
+          </div>
       </div>
       <div class="col-md-8">
         <div class="profile-body">
           <div class="name">
             <h1><strong>{{$agent->fullname}}</strong></h1>
-            <p class="profile-text designation">{!! $agent->designations !!}</p>
-          </div>
-          <div class="contact-info">
-            <h3>Contact</h3>
-            <p class="profile-text phone">{{$agent->cell}}</p>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailModal" style="margin-bottom: 1rem;">Email</button>
+            <h5 class="profile-text designation">{!! $agent->designations !!}</h5>
           </div>
           <div class="about-me">
             @if ($agent->bio == '' || $agent->bio == null)
             @else
-            <h3>About Me</h3>
             {!! $agent->bio !!}
             @endif
           </div>
@@ -40,6 +86,26 @@
       </div>
     </div>
   </div>
+  <div class="container">
+    <div class="row">
+      <h3>My Listings</h3>
+    </div>
+  </div>
+  <div class="container" style="margin: 3em auto;">
+      <div class="row">
+        @foreach ($listings as $listing)
+        <div class="col-sm-4">
+          <div class="imagebox">
+            <a href="/homes-for-sale/{{ strval($listing->ListingId) }}">
+              <img src="{{ $listing->ListPictureURL}}" class="category-banner img-responsive">
+              <span class="imagebox-desc">${{ number_format($listing->ListPrice) }} <small>{{ $listing->BedroomsTotal }} bds {{ $listing->BathroomsTotal }} ba X,XXX sqft</small><br>
+              <small>{{ ucwords(strtolower($listing->FullStreetAddress)) }}, {{ ucwords(strtolower($listing->City)) }}, {{ $listing->StateOrProvince }}</small></span>
+            </a>
+          </div>
+        </div>
+        @endforeach
+      </div>
+    </div>
 
   <!-- Modal -->
   <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

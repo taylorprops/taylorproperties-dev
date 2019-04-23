@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Agent;
+use App\TblAgent;
+use App\Listing;
 use App\TPLocation;
 
 use Mail;
@@ -41,7 +43,7 @@ class PageController extends Controller
     }
     public function offices()
     {
-        $locations = TPLocation::orderBy('created_at','desc')->get();
+        $locations = TPLocation::orderBy('name')->get();
         return view('about.offices')->with('locations',$locations);
     }
 
@@ -57,23 +59,48 @@ class PageController extends Controller
     public function agentSearch(Request $request)
     {
         $query = $request->input('q');
-        $agents = Agent::where('fullname','LIKE','%'.$query.'%')->orWhere('cell','LIKE','%'.$query.'%')->paginate(12);
+        $agents = Agent::where('fullname','LIKE','%'.$query.'%')
+            ->orWhere('cell','LIKE','%'.$query.'%')
+            ->orWhere('bio','LIKE','%'.$query.'%')
+            ->orWhere('designations','LIKE','%'.$query.'%')
+            ->paginate(12);
+
         // append search query parameter to search results
         $pagination = $agents->appends(array('q' => $query));
+
         if(count($agents) > 0)
         {
             return view('agent_search')->with(['agents'=>$agents,'query'=>$query]);
         }
         else 
         {
-            return view ('agents')->withMessage('No Details found. Try to search again !');
+            flash('No results found for "'.$query.'". Try another search.')->error();
+            return view ('agents')->with('agents',$agents);
         }
     }
 
     public function showAgent($id)
     {
+        // find agent
         $agent = Agent::find($id);
-        return view('agent_profile')->with('agent',$agent);
+        // Get agent id
+        $agent_id = $agent->agent_id;
+        //Get mris_id by agent_id from different table
+        $mris_id = TblAgent::find($agent_id)->mris_id_tp_md;
+
+        if ($mris_id == null || $mris_id == '')
+        {
+            $mris_id = TblAgent::find($agent_id)->mris_id_aap;
+            if ($mris_id == null || $mris_id == '')
+            {
+                $mris_id = TblAgent::find($agent_id)->mris_id_tp_va;
+            }
+        }
+
+        //Get listings by mris_id
+        $listings = Listing::where('ListAgentMlsId', $mris_id)->get();
+
+        return view('agent_profile')->with(['agent'=>$agent,'listings'=>$listings]);
     }
 
     public function emailAgent(Request $request,$id)
@@ -89,7 +116,8 @@ class PageController extends Controller
         $contact['body'] = $request->get('body');
 
         // Mail delivery logic goes here
-        Mail::to('gary@taylorprops.com')->send(new ContactEmail($contact));
+        //Mail::to('gary@taylorprops.com')->send(new ContactEmail($contact));
+        Mail::send(new ContactEmail($contact));
 
         flash('Thank you! Your message has been sent!')->success();
 

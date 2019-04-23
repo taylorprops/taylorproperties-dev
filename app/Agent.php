@@ -14,4 +14,14 @@ class Agent extends Model
 
    	// Timestamps
    	public $timestamps = false;
+
+   	public function listings()
+    {
+        return $this->hasMany('App\Listings');
+    }
+
+    public function tblagent()
+    {
+        return $this->hasOne('App\TblAgent', 'agent_id', 'agent_id');
+    }
 }

@@ -38,6 +38,7 @@
 <main role="main">
   <div class="album py-5">
     <div class="container">
+      @include('flash::message')
       <div class="row search">
           <form action="/agents/search" method="GET" role="search">
               {{ csrf_field() }}

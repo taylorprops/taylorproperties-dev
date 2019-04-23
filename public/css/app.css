@@ -10686,6 +10686,13 @@ a {
   border-color: #ff8c42;
 }
 
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .nav-link.active {
+  color: #fff;
+}
+
 .profile-body p,
 .profile-body span,
 .profile-body div,

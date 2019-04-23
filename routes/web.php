@@ -47,3 +47,4 @@ Route::get('/sell-my-house', function () {
 });
 Route::post('/sell-my-house', 'ContactController@store')->name('contact.store');
 
+Route::resource('/homes-for-sale', 'ListingController');
