@@ -41,6 +41,10 @@ class PageController extends Controller
         //
         return view('about.partners');
     }
+    public function privacypolicy()
+    {
+        return view('privacypolicy');
+    }
     public function offices()
     {
         $locations = TPLocation::orderBy('name')->get();

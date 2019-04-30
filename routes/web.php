@@ -23,6 +23,7 @@ Route::get('/about', function () {
 */
 
 Route::get('/', 'PageController@index');
+Route::get('/privacy-policy', 'PageController@privacypolicy');
 Route::get('/about', 'PageController@about');
 Route::get('/about/team', 'PageController@team');
 Route::get('/about/partners', 'PageController@partners');

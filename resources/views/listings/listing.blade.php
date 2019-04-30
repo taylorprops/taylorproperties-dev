@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '$listing_address $listing_city, $listing_state $listing_zip | MLS #$mls_id | Taylor Properties')
+@section('title', $listing->FullStreetAddress .' '.$listing->City.', '.$listing->StateOrProvince.' '.$listing->PostalCode.'| MLS #'.$listing->ListingId.' | Taylor Properties')
 
 @section('content')
 <style type="text/css">
